@@ -6,15 +6,16 @@ Checkbox::Checkbox(string text, int x, int y) {
 	this->value = text;
 	this->Lengh = text.length() + 1;
 	this->Checked = false;
+	this->stdoutHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
 void Checkbox::Draw() {
-	SetConsoleCursorPosition(stdoutHandle, position);
+	SetConsoleCursorPosition(this->stdoutHandle, this->position);
 	CONSOLE_SCREEN_BUFFER_INFO consoleScreenBufferInfo;
-	GetConsoleScreenBufferInfo(stdoutHandle, &consoleScreenBufferInfo);
+	GetConsoleScreenBufferInfo(this->stdoutHandle, &consoleScreenBufferInfo);
 
 	CONSOLE_CURSOR_INFO consoleCursorInfo = { 100, FALSE };
-	SetConsoleCursorInfo(stdoutHandle, &consoleCursorInfo);
+	SetConsoleCursorInfo(this->stdoutHandle, &consoleCursorInfo);
 
 	if (this->Checked == true) {
 		cout << "[X]" << this->value;
@@ -32,6 +33,7 @@ void Checkbox::Choose() {
 	}
 	else {
 		this->Checked = true;
+		//SetConsoleCursorPosition(stdoutHandle, this->getCoords());
 		this->Draw();
 	}
 }
@@ -46,6 +48,7 @@ void Checkbox::SetY(int y) {
 
 void Checkbox::SetText(string text) {
 	this->value = text;
+	this->Lengh = text.length() +1;
 }
 
 bool Checkbox::IsTarget(COORD mCords) {

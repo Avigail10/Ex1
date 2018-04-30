@@ -84,7 +84,7 @@ void Checklist::KeyEventHandleing(KEY_EVENT_RECORD keyEvent) {
 				this->list[Currectitem].SetKeyboardFocus(true);
 			}
 			return;
-		}
+		}	
 		if (keyEvent.wVirtualKeyCode == VK_SPACE) {
 			this->list[Currectitem].Choose();
 			return;
