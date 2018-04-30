@@ -86,6 +86,7 @@ void Checklist::KeyEventHandleing(KEY_EVENT_RECORD keyEvent) {
 			return;
 		}	
 		if (keyEvent.wVirtualKeyCode == VK_SPACE) {
+			SetConsoleCursorPosition(stdoutHandle, this->list[Currectitem].getCoords());
 			this->list[Currectitem].Choose();
 			return;
 		}
@@ -98,6 +99,7 @@ void Checklist::MouseEventHandleing(MOUSE_EVENT_RECORD mouseEvent) {
 		if (mouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
 			for (int i = 0; i < this->listSize; ++i) {
 				if (this->list[i].IsTarget(mCords)) {
+					SetConsoleCursorPosition(stdoutHandle, this->list[i].getCoords());
 					this->list[i].Choose();
 					break;										//no chance for more checkbox to click.
 				}
